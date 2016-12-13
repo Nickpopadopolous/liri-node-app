@@ -49,8 +49,21 @@ switch(process.argv[2]) {
 	});
 	break;
 	case 'spotify-this-song':
-	
+	spotify();
+	break;
+	case 'do-what-it-says':
+	fs.readFile('random.txt', 'utf8', function(error,data) {
+		if(error) {
+			console.log(error);
+		} else {
+			var dataArr = data.split(",");
+		console.log(dataArr);
+		}
+	});
+	break;
+}
 
+function spotify () {
 	Spotify.search({type: 'track', query: inputThree}, function(err, data) {
 		if (err) {
 			console.log('Unexpected Error' + err);
@@ -63,16 +76,7 @@ switch(process.argv[2]) {
 			console.log("Song:" + songs[i].name);
 		}
 	});
-	break;
-	case 'do-what-it-says':
-	fs.readFile('random.txt', 'utf8', function(error,data) {
-		if(error) {
-			console.log(error);
-		} 
-	});
-	break;
 }
-
 
 
 
