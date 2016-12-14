@@ -39,7 +39,7 @@ switch(process.argv[2]) {
 
 	client.get('statuses/user_timeline', parameters, function(error, tweets, response){
 		if (!error && response.statusCode == 200) {
-			for(var i = 0; i < 3; i++){
+			for(var i = 0; i < 7; i++){
 				console.log(tweets[i].text + " Created on:" + tweets[i].created_at);
 			}
 		} else {
@@ -56,9 +56,11 @@ switch(process.argv[2]) {
 		if(error) {
 			console.log(error);
 		} else {
-			var dataArr = data.split(",");
-		console.log(dataArr);
+			
+		var spot = data.split(', ')
+		spotify(spot);
 		}
+
 	});
 	break;
 }
@@ -67,6 +69,7 @@ function spotify () {
 	Spotify.search({type: 'track', query: inputThree}, function(err, data) {
 		if (err) {
 			console.log('Unexpected Error' + err);
+
 		}
 		var songs = data.tracks.items;
 		for(var i = 0; i < 1; i++) {
